@@ -5,7 +5,7 @@
   "name": "calendar-backend",
   "scripts": {
     "dev": "nodemon ./src/Api/app.ts",
-    "start": "tsc && node ./src/Api/app.js",
+    "start": "tsc && node ./dist/Api/app.js",
     "lint": "eslint --fix ./src/**/*.ts"
   },
   "version": "0.1.0",
