@@ -1,8 +1,8 @@
 import { Container } from 'inversify';
 import TYPES from './types';
 
-import { Event as EventModel, User as UserModel } from './Application/Entities/Models';
-import { Event, User } from './Application/Entities';
+import { Event as EventModel, User as UserModel } from './Domain/Entities/Models';
+import { Event, User } from './Domain/Entities';
 
 import { DbManager as DbManagerModel } from './Infrastructure/DbManager/Model';
 import { DbManager } from './Infrastructure/DbManager';

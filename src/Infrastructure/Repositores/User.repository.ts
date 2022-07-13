@@ -2,7 +2,7 @@ import { MongoEntityManager, ObjectID } from 'typeorm';
 import { inject, injectable } from 'inversify';
 
 import { UserRepository as UserRepositoryModel } from './Models';
-import { User } from '../../Application/Entities';
+import { User } from '../../Domain/Entities';
 import Types from '../../types';
 import { DbManager } from '../DbManager/Model';
 

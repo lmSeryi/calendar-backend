@@ -3,7 +3,7 @@ import { inject, injectable } from 'inversify';
 import type { ObjectID } from 'typeorm';
 import TYPES from '../../types';
 
-import { Event } from '../Entities/Models';
+import { Event } from '../../Domain/Entities/Models';
 import type { EventService as EventServiceModel } from './Model';
 import { EventRepository } from '../../Infrastructure/Repositores/Models';
 import { EventDto } from '../DTO';

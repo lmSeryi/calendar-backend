@@ -2,8 +2,8 @@ import { MongoEntityManager, ObjectID } from 'typeorm';
 import { inject, injectable } from 'inversify';
 
 import { EventRepository as EventRepositoryModel } from './Models';
-import { Event as EventModel } from '../../Application/Entities/Models';
-import { Event } from '../../Application/Entities';
+import { Event as EventModel } from '../../Domain/Entities/Models';
+import { Event } from '../../Domain/Entities';
 import Types from '../../types';
 import { DbManager } from '../DbManager/Model';
 import { EventDto } from '../../Application/DTO';

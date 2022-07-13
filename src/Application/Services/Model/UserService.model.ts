@@ -1,5 +1,5 @@
 import { ObjectID } from 'typeorm';
-import { User } from '../../Entities/Models';
+import { User } from '../../../Domain/Entities/Models';
 import { JwtPayload } from '../../Models';
 
 interface UserService {

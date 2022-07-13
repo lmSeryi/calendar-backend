@@ -1,5 +1,5 @@
 import { ObjectID } from 'typeorm';
-import { Event } from '../../Entities/Models';
+import { Event } from '../../../Domain/Entities/Models';
 import { EventDto } from '../../DTO';
 
 interface UserService {

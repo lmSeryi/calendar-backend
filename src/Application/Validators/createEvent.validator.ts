@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { Event } from '../Entities/Models';
+import { Event } from '../../Domain/Entities/Models';
 import { optionalString, requiredString } from './validators';
 
 const eventSchema = Joi.object<Event>({

@@ -3,7 +3,7 @@ import { ObjectID } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { User } from '../Entities/Models';
+import { User } from '../../Domain/Entities/Models';
 import TYPES from '../../types';
 
 import type { UserService as UserServiceModel } from './Model';

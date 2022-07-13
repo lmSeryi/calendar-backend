@@ -1,5 +1,5 @@
 import { ObjectID } from 'typeorm';
-import { User } from '../../../Application/Entities/Models';
+import { User } from '../../../Domain/Entities/Models';
 
 interface UserRepository {
 

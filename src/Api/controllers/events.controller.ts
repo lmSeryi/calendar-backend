@@ -6,7 +6,7 @@ import { ObjectID } from 'mongodb';
 import container from '../../inversify.config';
 import { EventService, UserService } from '../../Application/Services/Model';
 import TYPES from '../../types';
-import { Event } from '../../Application/Entities/Models';
+import { Event } from '../../Domain/Entities/Models';
 import { UserDto } from '../../Application/DTO';
 
 export const getEvents = async (req: Request, res: Response) => {
