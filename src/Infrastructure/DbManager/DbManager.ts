@@ -1,3 +1,4 @@
+import path from 'path';
 import { DataSource } from 'typeorm';
 import { injectable } from 'inversify';
 
@@ -5,18 +6,22 @@ import { DB_HOST_PARSED } from '../../libs/config';
 
 import { DbManager as DbManagerModel } from './Model';
 
+const cwd = process.cwd();
+const entitiesPath = path.join(cwd, 'src', 'Domain', 'Entities');
+
 @injectable()
 export default class DbManager implements DbManagerModel {
   readonly #dataSource: DataSource;
 
   constructor() {
+    console.log(`${entitiesPath}\\*.entity.{ts.js}`);
     this.#dataSource = new DataSource({
       type: 'mongodb',
       url: DB_HOST_PARSED,
       database: 'calendar',
       connectTimeoutMS: 1000,
       useUnifiedTopology: true,
-      entities: [`${__dirname}/../../Domain/Entities/*.entity.{js,ts}`],
+      entities: [`${entitiesPath}\\*.entity.{js,ts}`],
     });
   }
 
