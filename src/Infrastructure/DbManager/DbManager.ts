@@ -7,7 +7,12 @@ import { DB_HOST_PARSED } from '../../libs/config';
 import { DbManager as DbManagerModel } from './Model';
 
 const cwd = process.cwd();
-const entitiesPath = path.join(cwd, 'src', 'Domain', 'Entities');
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+const source = NODE_ENV === 'development' ? 'src' : 'dist';
+
+const entitiesPath = path.join(cwd, source, 'Domain', 'Entities');
 
 @injectable()
 export default class DbManager implements DbManagerModel {
