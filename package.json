@@ -5,8 +5,9 @@
   "name": "calendar-backend",
   "scripts": {
     "dev": "nodemon ./src/Api/app.ts",
-    "start": "tsc && node ./dist/Api/app.js",
+    "start": "node dist/Api/app.js",
     "build": "tsc",
+    "postinstall": "yarn build",
     "lint": "eslint --fix ./src/**/*.ts"
   },
   "version": "0.1.0",
