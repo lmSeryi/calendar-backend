@@ -21,7 +21,7 @@ export default class DbManager implements DbManagerModel {
       database: 'calendar',
       connectTimeoutMS: 1000,
       useUnifiedTopology: true,
-      entities: [`${entitiesPath}\\*.entity.{js,ts}`],
+      entities: [`${entitiesPath}/*.entity.{js,ts}`],
     });
   }
 
