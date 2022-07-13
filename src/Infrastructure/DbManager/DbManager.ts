@@ -14,7 +14,6 @@ export default class DbManager implements DbManagerModel {
   readonly #dataSource: DataSource;
 
   constructor() {
-    console.log(`${entitiesPath}\\*.entity.{ts.js}`);
     this.#dataSource = new DataSource({
       type: 'mongodb',
       url: DB_HOST_PARSED,
