@@ -4,8 +4,9 @@ import { SignUp } from '../Models';
 
 const signUpValidator = Joi.object<SignUp>({
   email: requiredString.email(),
-  password: requiredString.min(8),
   name: requiredString.min(2),
+  password: requiredString.min(8),
+  confirmPassword: requiredString.min(8).valid(Joi.ref('password')),
 });
 
 export default signUpValidator;

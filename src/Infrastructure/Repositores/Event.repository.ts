@@ -24,7 +24,8 @@ export default class UserRepository implements EventRepositoryModel {
   }
 
   async getEvents(): Promise<EventModel[]> {
-    return this.#mongoManager.find(Event);
+    const select = ['_id', 'title', 'user', 'bgColor', 'end', 'start', 'notes'] as any;
+    return this.#mongoManager.find(Event, { select });
   }
 
   async createEvent(event: EventDto): Promise<EventModel> {

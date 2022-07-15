@@ -4,7 +4,7 @@
   "main": "index.js",
   "name": "calendar-backend",
   "scripts": {
-    "dev": "nodemon ./src/Api/app.ts",
+    "dev": "NODE_ENV=development nodemon ./src/Api/app.ts",
     "start": "node dist/Api/app.js",
     "build": "tsc",
     "postinstall": "yarn build",
@@ -32,6 +32,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

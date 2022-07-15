@@ -1,4 +1,4 @@
-// ** Controller for route /api/auth
+// ** Controller for route /api/events
 import { Request, Response } from 'express';
 // @ts-ignore
 import { ObjectID } from 'mongodb';
@@ -53,7 +53,6 @@ export const createEvent = async (
   const userDto: UserDto = {
     _id: user._id,
     name: user.name,
-    email: user.email,
   };
 
   const payload = {
@@ -67,7 +66,12 @@ export const createEvent = async (
   const event = await eventService.createEvent(payload);
 
   return res.send({
-    event,
+    title: event.title,
+    notes: event.notes,
+    start: event.start,
+    end: event.end,
+    user: event.user,
+    _id: event._id,
   });
 };
 

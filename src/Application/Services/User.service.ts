@@ -10,6 +10,7 @@ import type { UserService as UserServiceModel } from './Model';
 import type { UserRepository } from '../../Infrastructure/Repositores/Models';
 import { SECRET_JWT_SEED } from '../../libs/config';
 import { JwtPayload } from '../Models';
+import { LoginResponsePayload } from './Model/UserService.model';
 
 @injectable()
 export default class UserService implements UserServiceModel {
@@ -25,7 +26,11 @@ export default class UserService implements UserServiceModel {
     return this.userRepository.getUserById(id);
   }
 
-  public async signUp(email: string, password: string, name: string): Promise<string | undefined> {
+  public async signUp(
+    email: string,
+    password: string,
+    name: string,
+  ): Promise<LoginResponsePayload> {
     const user = await this.getUser(email);
     if (user) {
       throw new Error('User already exists');
@@ -33,10 +38,19 @@ export default class UserService implements UserServiceModel {
     const encryptedPassword = this.encryptPassword(password);
 
     const createdUser = await this.userRepository.signUp(email, encryptedPassword, name);
-    return this.generateToken({ uid: createdUser._id, name: createdUser.name });
+    const token = await this.generateToken({ uid: createdUser._id, name: createdUser.name });
+
+    if (!token) {
+      throw new Error('Internal server error');
+    }
+
+    return {
+      token,
+      uid: createdUser._id.toString(),
+    };
   }
 
-  public async signIn(email: string, password: string): Promise<string | undefined> {
+  public async signIn(email: string, password: string): Promise<LoginResponsePayload> {
     const user = await this.getUser(email);
     if (!user) {
       throw new Error('Credentials not valid');
@@ -44,7 +58,17 @@ export default class UserService implements UserServiceModel {
     if (!this.decryptPassword(password, user.password)) {
       throw new Error('Credentials not valid');
     }
-    return this.generateToken({ uid: user._id, name: user.name });
+
+    const token = await this.generateToken({ uid: user._id, name: user.name });
+    if (!token) {
+      throw new Error('Internal server error');
+    }
+
+    return {
+      token,
+      uid: user._id.toString(),
+      name: user.name,
+    };
   }
 
   public generateToken(payload: JwtPayload): Promise<string | undefined> {

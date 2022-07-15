@@ -9,11 +9,18 @@ import RenewJwtRequest from '../../Application/Models/Requests/RenewJwt.request'
 export const signIn = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const userService = container.get<UserService>(TYPES.UserService);
-  const token = await userService.signIn(email, password);
 
-  return res.status(201).json({
-    token,
-  });
+  try {
+    const data = await userService.signIn(email, password);
+
+    return res.status(201).json({
+      ...data,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: 'Internal server error',
+    });
+  }
 };
 
 export const signUp = async (
@@ -24,10 +31,10 @@ export const signUp = async (
   const userService = container.get<UserService>(TYPES.UserService);
 
   try {
-    const token = await userService.signUp(email, password, name);
+    const data = await userService.signUp(email, password, name);
     return res.status(200).json({
       message: 'User created',
-      token,
+      ...data,
     });
   } catch (error) {
     console.error(error);
@@ -44,5 +51,7 @@ export const renewToken = async (req: RenewJwtRequest, res: Response) => {
 
   res.status(200).json({
     token,
+    uid,
+    name,
   });
 };
