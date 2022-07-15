@@ -33,6 +33,9 @@ dbManager.start();
 
 // setting api router
 app.use('/api', router);
+app.use('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
